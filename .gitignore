@@ -1,0 +1,11 @@
+node_modules
+  .next
+  .turbo
+  dist
+  .DS_Store
+  .env*.local
+  .contentlayer
+  .cache
+  pnpm-lock.yaml
+  *.log
+  .husky/_
