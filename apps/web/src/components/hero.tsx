@@ -13,51 +13,47 @@ interface HeroProps {
 
 export function Hero({ featuredPost }: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background z-10" />
-      
-      <div className="container mx-auto px-4 relative z-20">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+      <div className="via-background/50 to-background absolute inset-0 z-10 bg-gradient-to-b from-transparent" />
+
+      <div className="container relative z-20 mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto text-center"
+          className="mx-auto max-w-4xl text-center"
         >
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-zinc-200 to-zinc-600"
+            className="mb-6 bg-gradient-to-r from-zinc-200 to-zinc-600 bg-clip-text text-5xl font-bold text-transparent md:text-7xl"
           >
             LA FABULOSA OCULTA
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-muted-foreground mb-12"
+            className="text-muted-foreground mb-12 text-xl md:text-2xl"
           >
             Análisis cinematográfico con perspectiva curatorial
           </motion.p>
-          
+
           {featuredPost && (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="bg-card/50 backdrop-blur-md rounded-lg p-8 mb-8"
+              className="bg-card/50 mb-8 rounded-lg p-8 backdrop-blur-md"
             >
-              <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-2">
+              <h2 className="text-muted-foreground mb-2 text-sm uppercase tracking-wider">
                 Crítica destacada
               </h2>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                {featuredPost.title}
-              </h3>
-              <p className="text-muted-foreground mb-6 line-clamp-2">
-                {featuredPost.excerpt}
-              </p>
-              <div className="flex gap-4 justify-center">
+              <h3 className="mb-4 text-2xl font-bold md:text-3xl">{featuredPost.title}</h3>
+              <p className="text-muted-foreground mb-6 line-clamp-2">{featuredPost.excerpt}</p>
+              <div className="flex justify-center gap-4">
                 <Link href={`/films/${featuredPost.slug}`}>
                   <Button size="lg" className="group">
                     Leer crítica
@@ -71,12 +67,12 @@ export function Hero({ featuredPost }: HeroProps) {
               </div>
             </motion.div>
           )}
-          
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="text-sm text-muted-foreground"
+            className="text-muted-foreground text-sm"
           >
             <p>Scroll para explorar</p>
             <motion.div

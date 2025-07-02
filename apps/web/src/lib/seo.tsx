@@ -23,7 +23,7 @@ interface SEOProps {
 
 export function SEO({ title, description, canonical, openGraph }: SEOProps) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://filmverse.com'
-  
+
   return (
     <NextSeo
       title={title}
@@ -72,7 +72,7 @@ export function FilmReviewJsonLd({
   slug,
 }: FilmReviewJsonLdProps) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://filmverse.com'
-  
+
   return (
     <>
       <ArticleJsonLd

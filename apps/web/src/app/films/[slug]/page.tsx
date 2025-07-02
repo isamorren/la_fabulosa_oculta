@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: FilmPageProps): Promise<Metadata> {
   const post = allPosts.find((post) => post.slug === params.slug)
-  
+
   if (!post) {
     return {}
   }
@@ -75,14 +75,12 @@ export default function FilmPage({ params }: FilmPageProps) {
         rating={post.rating}
         slug={post.slug}
       />
-      
-      <article className="container mx-auto px-4 py-16 max-w-4xl">
+
+      <article className="container mx-auto max-w-4xl px-4 py-16">
         <header className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            {post.title}
-          </h1>
-          
-          <div className="flex items-center gap-6 text-muted-foreground mb-6">
+          <h1 className="mb-4 text-4xl font-bold md:text-5xl">{post.title}</h1>
+
+          <div className="text-muted-foreground mb-6 flex items-center gap-6">
             <time dateTime={post.publishedAt}>
               {format(new Date(post.publishedAt), "d 'de' MMMM, yyyy", { locale: es })}
             </time>
@@ -91,27 +89,22 @@ export default function FilmPage({ params }: FilmPageProps) {
                 <Star
                   key={i}
                   className={`h-4 w-4 ${
-                    i < post.rating
-                      ? 'text-yellow-500 fill-current'
-                      : 'text-gray-300'
+                    i < post.rating ? 'fill-current text-yellow-500' : 'text-gray-300'
                   }`}
                 />
               ))}
             </div>
           </div>
-          
-          <div className="flex flex-wrap gap-2 mb-8">
+
+          <div className="mb-8 flex flex-wrap gap-2">
             {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-sm px-3 py-1 bg-secondary rounded-full"
-              >
+              <span key={tag} className="bg-secondary rounded-full px-3 py-1 text-sm">
                 {tag}
               </span>
             ))}
           </div>
         </header>
-        
+
         <div className="prose prose-lg dark:prose-invert max-w-none">
           <MDXContent />
         </div>

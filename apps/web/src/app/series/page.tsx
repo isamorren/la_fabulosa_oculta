@@ -1,0 +1,18 @@
+import { PageHeader } from '@/components/page-header'
+
+export default function SeriesPage() {
+  return (
+    <div className="min-h-screen">
+      <PageHeader
+        title="Series"
+        description="Exploramos las narrativas más complejas y fascinantes de la televisión contemporánea"
+      />
+
+      <section className="container mx-auto px-6 py-12">
+        <div className="py-20 text-center">
+          <p className="text-lg text-gray-400">Próximamente agregaremos reseñas de series.</p>
+        </div>
+      </section>
+    </div>
+  )
+}

@@ -20,20 +20,20 @@ export function ScrollProgress() {
         trigger: document.body,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 0.3
-      }
+        scrub: 0.3,
+      },
     })
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
     }
   }, [])
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-1 z-50 bg-zinc-900">
+    <div className="fixed left-0 right-0 top-0 z-50 h-1 bg-zinc-900">
       <div
         ref={progressRef}
-        className="h-full bg-gradient-to-r from-zinc-500 to-zinc-300 origin-left"
+        className="h-full origin-left bg-gradient-to-r from-zinc-500 to-zinc-300"
         style={{ transform: 'scaleX(0)' }}
       />
     </div>

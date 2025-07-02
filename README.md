@@ -77,16 +77,16 @@ Añade nuevos posts en `apps/web/content/posts/`:
 
 ```mdx
 ---
-title: "Título del análisis"
-film: "Nombre de la película"
-director: "Director"
+title: 'Título del análisis'
+film: 'Nombre de la película'
+director: 'Director'
 year: 2024
 rating: 5
 publishedAt: 2024-01-01
-slug: "url-slug"
-tags: ["tag1", "tag2"]
-cover: "/images/cover.jpg"
-excerpt: "Descripción breve"
+slug: 'url-slug'
+tags: ['tag1', 'tag2']
+cover: '/images/cover.jpg'
+excerpt: 'Descripción breve'
 featured: false
 ---
 

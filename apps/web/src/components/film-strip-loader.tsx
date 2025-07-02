@@ -15,33 +15,32 @@ export function FilmStripLoader() {
         gsap.to(containerRef.current, {
           autoAlpha: 0,
           duration: 0.5,
-          ease: 'power2.inOut'
+          ease: 'power2.inOut',
         })
-      }
+      },
     })
 
     tl.fromTo(
       stripsRef.current,
       {
         yPercent: 100,
-        opacity: 0
+        opacity: 0,
       },
       {
         yPercent: 0,
         opacity: 1,
         duration: 0.8,
         stagger: 0.1,
-        ease: 'power2.out'
+        ease: 'power2.out',
       }
-    )
-    .to(
+    ).to(
       stripsRef.current,
       {
         yPercent: -100,
         opacity: 0,
         duration: 0.8,
         stagger: 0.1,
-        ease: 'power2.in'
+        ease: 'power2.in',
       },
       '+=0.3'
     )
@@ -63,7 +62,7 @@ export function FilmStripLoader() {
             ref={(el) => {
               if (el) stripsRef.current[i] = el
             }}
-            className="h-full w-20 bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-900 rounded"
+            className="h-full w-20 rounded bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-900"
             style={{
               backgroundImage: `repeating-linear-gradient(
                 0deg,
@@ -71,7 +70,7 @@ export function FilmStripLoader() {
                 #18181b 8px,
                 #09090b 8px,
                 #09090b 16px
-              )`
+              )`,
             }}
           />
         ))}

@@ -9,7 +9,7 @@ import * as THREE from 'three'
 
 function AnimatedSphere() {
   const meshRef = useRef<THREE.Mesh>(null)
-  
+
   useFrame((state) => {
     if (meshRef.current) {
       meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.1
@@ -47,21 +47,14 @@ export function ThreeHero() {
 
   return (
     <div ref={containerRef} className="fixed inset-0 -z-10">
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 75 }}
-        gl={{ antialias: true, alpha: true }}
-      >
+      <Canvas camera={{ position: [0, 0, 5], fov: 75 }} gl={{ antialias: true, alpha: true }}>
         <Suspense fallback={null}>
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 5]} intensity={1} />
           <AnimatedSphere />
           <Environment preset="night" />
           <EffectComposer>
-            <Bloom
-              intensity={0.5}
-              luminanceThreshold={0.1}
-              luminanceSmoothing={0.9}
-            />
+            <Bloom intensity={0.5} luminanceThreshold={0.1} luminanceSmoothing={0.9} />
             <ChromaticAberration
               blendFunction={BlendFunction.NORMAL}
               offset={new THREE.Vector2(0.001, 0.001)}

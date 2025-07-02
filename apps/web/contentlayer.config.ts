@@ -15,7 +15,7 @@ export const Post = defineDocumentType(() => ({
     tags: { type: 'list', of: { type: 'string' }, required: true },
     cover: { type: 'string', required: true },
     excerpt: { type: 'string', required: true },
-    featured: { type: 'boolean', default: false }
+    featured: { type: 'boolean', default: false },
   },
   computedFields: {
     url: {
