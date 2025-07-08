@@ -1,3 +1,9 @@
 packages:
-  - 'apps/*'
-  - 'packages/*'
+  - apps/*
+  - packages/*
+
+ignoredBuiltDependencies:
+  - contentlayer2
+  - esbuild
+  - protobufjs
+  - unrs-resolver
