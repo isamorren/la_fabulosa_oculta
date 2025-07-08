@@ -4,13 +4,13 @@ import { Metadata } from 'next'
 import { SEO, FilmReviewJsonLd } from '@/lib/seo'
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
-import { useMDXComponent } from 'next-contentlayer2/hooks'
 import { Star } from 'lucide-react'
+import { MDXContent } from '@/components/mdx-content'
 
 interface FilmPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -20,7 +20,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: FilmPageProps): Promise<Metadata> {
-  const post = allPosts.find((post) => post.slug === params.slug)
+  const { slug } = await params
+  const post = allPosts.find((post) => post.slug === slug)
 
   if (!post) {
     return {}
@@ -40,14 +41,13 @@ export async function generateMetadata({ params }: FilmPageProps): Promise<Metad
   }
 }
 
-export default function FilmPage({ params }: FilmPageProps) {
-  const post = allPosts.find((post) => post.slug === params.slug)
+export default async function FilmPage({ params }: FilmPageProps) {
+  const { slug } = await params
+  const post = allPosts.find((post) => post.slug === slug)
 
   if (!post) {
     notFound()
   }
-
-  const MDXContent = useMDXComponent(post.body.code)
 
   return (
     <>
@@ -105,9 +105,7 @@ export default function FilmPage({ params }: FilmPageProps) {
           </div>
         </header>
 
-        <div className="prose prose-lg dark:prose-invert max-w-none">
-          <MDXContent />
-        </div>
+        <MDXContent code={post.body.code} />
       </article>
     </>
   )
