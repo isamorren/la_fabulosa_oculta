@@ -8,6 +8,7 @@ import { Header } from '@/components/navigation/header'
 import { PageTransition } from '@/components/transitions/page-transition'
 import { CustomCursor } from '@/components/cursor/custom-cursor'
 import { QueryProvider } from '@/lib/providers/query-provider'
+import { Breadcrumbs } from '@/components/navigation/breadcrumbs'
 import { Suspense } from 'react'
 
 const inter = Inter({
@@ -65,6 +66,7 @@ export default function RootLayout({
           <Header />
           <ScrollProgress />
           <main className="pt-20">
+            <Breadcrumbs />
             <PageTransition>{children}</PageTransition>
           </main>
         </QueryProvider>

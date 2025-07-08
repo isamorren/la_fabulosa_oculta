@@ -9,6 +9,8 @@ import { cn } from '@/lib/utils'
 import { MagneticButton } from './magnetic-button'
 import { MobileMenu } from './mobile-menu'
 import { SearchCommand } from './search-command'
+import { NavDropdown } from './nav-dropdown'
+import { navigationData } from '@/data/navigation'
 
 const navItems = [
   { href: '/', label: 'Inicio' },
@@ -83,32 +85,99 @@ export function Header() {
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-8 md:flex">
             <ul className="flex items-center gap-6">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <MagneticButton>
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        'relative py-2 text-sm font-medium transition-colors',
-                        pathname === item.href ? 'text-white' : 'text-gray-400 hover:text-white'
-                      )}
-                    >
-                      {item.label}
-                      {pathname === item.href && (
-                        <motion.div
-                          layoutId="activeNav"
-                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
-                          transition={{
-                            type: 'spring',
-                            stiffness: 380,
-                            damping: 30,
-                          }}
-                        />
-                      )}
-                    </Link>
-                  </MagneticButton>
-                </li>
-              ))}
+              {/* Regular Nav Items */}
+              <li>
+                <MagneticButton>
+                  <Link
+                    href="/"
+                    className={cn(
+                      'relative py-2 text-sm font-medium transition-colors',
+                      pathname === '/' ? 'text-white' : 'text-gray-400 hover:text-white'
+                    )}
+                  >
+                    Inicio
+                    {pathname === '/' && (
+                      <motion.div
+                        layoutId="activeNav"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
+                        transition={{
+                          type: 'spring',
+                          stiffness: 380,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                  </Link>
+                </MagneticButton>
+              </li>
+
+              {/* Películas Dropdown */}
+              <li>
+                <NavDropdown
+                  label="Películas"
+                  items={[
+                    { label: 'Todas las películas', href: '/peliculas' },
+                    { label: 'En cartelera', href: '/peliculas/cartelera' },
+                    { label: 'Próximos estrenos', href: '/peliculas/proximos' },
+                    { label: 'Mejor valoradas', href: '/peliculas/top' },
+                  ]}
+                  isActive={pathname.startsWith('/peliculas')}
+                />
+              </li>
+
+              {/* Géneros Dropdown */}
+              <li>
+                <NavDropdown
+                  label="Géneros"
+                  items={navigationData.genres}
+                  isActive={pathname.startsWith('/genero')}
+                />
+              </li>
+
+              {/* Décadas Dropdown */}
+              <li>
+                <NavDropdown
+                  label="Décadas"
+                  items={navigationData.decades}
+                  isActive={pathname.startsWith('/decada')}
+                />
+              </li>
+
+              {/* Listas Dropdown */}
+              <li>
+                <NavDropdown
+                  label="Listas"
+                  items={[
+                    { label: 'Listas temáticas', href: '/listas' },
+                    { label: 'Mi filmoteca', href: '/filmoteca' },
+                    ...navigationData.curatedLists,
+                  ]}
+                  isActive={
+                    pathname.startsWith('/lista') ||
+                    pathname === '/listas' ||
+                    pathname === '/filmoteca'
+                  }
+                />
+              </li>
+
+              {/* Más Dropdown */}
+              <li>
+                <NavDropdown
+                  label="Más"
+                  items={[
+                    { label: 'Directores', href: '/directores' },
+                    { label: 'Calendario de estrenos', href: '/calendario' },
+                    { label: 'Escenas icónicas', href: '/escenas' },
+                    { label: 'Sobre nosotros', href: '/sobre' },
+                  ]}
+                  isActive={
+                    pathname === '/directores' ||
+                    pathname === '/calendario' ||
+                    pathname === '/escenas' ||
+                    pathname === '/sobre'
+                  }
+                />
+              </li>
             </ul>
 
             {/* Search Button */}

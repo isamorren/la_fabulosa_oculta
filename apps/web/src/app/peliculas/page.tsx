@@ -1,15 +1,19 @@
 'use client'
 
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { tmdbApi } from '@/lib/tmdb/api'
 import { FilmCardTMDB } from '@/components/tmdb/film-card-tmdb'
 import { PageHeader } from '@/components/page-header'
 import { FilmGrid } from '@/components/film-grid'
+import { MovieFilters } from '@/components/filters/movie-filters'
 import { Skeleton } from '@ui/components/skeleton'
 
 export default function PeliculasPage() {
+  const [filters, setFilters] = useState({})
+
   const { data, isLoading } = useQuery({
-    queryKey: ['movies', 'popular'],
+    queryKey: ['movies', 'popular', filters],
     queryFn: () => tmdbApi.getPopularMovies(),
   })
 
@@ -21,6 +25,16 @@ export default function PeliculasPage() {
       />
 
       <section className="container mx-auto px-6 py-12">
+        {/* Filters Bar */}
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-2xl font-bold">
+            {data?.total_results
+              ? `${data.total_results.toLocaleString()} películas`
+              : 'Cargando...'}
+          </h2>
+          <MovieFilters onFiltersChange={setFilters} />
+        </div>
+
         {isLoading ? (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[...Array(6)].map((_, i) => (

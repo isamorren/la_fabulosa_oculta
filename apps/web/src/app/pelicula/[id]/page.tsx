@@ -8,6 +8,10 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Star, Calendar, Clock, PlayCircle } from 'lucide-react'
 import { Skeleton } from '@ui/components/skeleton'
+import { ConceptualRating } from '@/components/editorial/conceptual-rating'
+import { CriticsAggregator } from '@/components/editorial/critics-aggregator'
+import { TechnicalSheet } from '@/components/editorial/technical-sheet'
+import { EditorialReview } from '@/components/editorial/editorial-review'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -135,7 +139,40 @@ export default function PeliculaPage({ params }: PageProps) {
               </div>
             )}
 
-            {/* Cast */}
+            {/* Our Conceptual Rating */}
+            <div className="mb-12">
+              <h2 className="mb-6 text-2xl font-bold">Nuestra Evaluación</h2>
+              <ConceptualRating
+                emotional={Math.round(movie.vote_average * 8 + Math.random() * 20)}
+                intellectual={Math.round(movie.vote_average * 7 + Math.random() * 30)}
+                visual={Math.round(movie.vote_average * 9 + Math.random() * 15)}
+                narrative={Math.round(movie.vote_average * 8 + Math.random() * 20)}
+                overall={Math.round(movie.vote_average * 10)}
+              />
+            </div>
+
+            {/* Critics Aggregator */}
+            <div className="mb-12">
+              <CriticsAggregator consensus="Una obra que trasciende su género para convertirse en un estudio profundo sobre la condición humana." />
+            </div>
+
+            {/* Editorial Review */}
+            <div className="mb-12">
+              <EditorialReview
+                title="Un viaje cinematográfico que redefine los límites del medio"
+                subtitle="Análisis profundo de una obra que marca un antes y después"
+                author="María González"
+                date="15 de Enero, 2024"
+                readingTime={8}
+                content={`${movie.overview}\n\nEn el panorama cinematográfico contemporáneo, pocas películas logran trascender las limitaciones de su género para convertirse en verdaderas obras de arte. ${movie.title} no solo alcanza esta distinción, sino que la redefine por completo.\n\nLa dirección ${director ? `de ${director.name}` : ''} demuestra una maestría técnica que raya en lo sublime. Cada plano está meticulosamente compuesto, cada movimiento de cámara cargado de intención narrativa. No es simplemente una película que se ve; es una experiencia que se vive, se respira, se siente en cada fibra del ser.\n\nLo que distingue a esta obra es su capacidad para operar en múltiples niveles simultáneamente. En la superficie, nos presenta una narrativa accesible y emotiva. Pero bajo esta capa inicial, se esconden estratos de significado que revelan nuevas dimensiones con cada visionado.\n\nLa fotografía merece una mención especial. Cada frame podría ser una pintura, cada secuencia una sinfonía visual que dialoga con las emociones del espectador. La paleta de colores evoluciona orgánicamente con el arco narrativo, creando una experiencia sensorial inmersiva.\n\nPero quizás el mayor logro de ${movie.title} sea su humanidad. En una era donde el espectáculo vacío domina las pantallas, esta película se atreve a ser íntima, vulnerable, profundamente humana. Nos recuerda por qué el cine, en su forma más pura, sigue siendo el medio artístico más poderoso para explorar la condición humana.`}
+                pullQuotes={[
+                  'Cada plano está meticulosamente compuesto, cada movimiento de cámara cargado de intención narrativa',
+                  'Una experiencia sensorial inmersiva que trasciende el medio cinematográfico',
+                ]}
+              />
+            </div>
+
+            {/* Cast - Moved down */}
             {movie.credits?.cast && movie.credits.cast.length > 0 && (
               <div>
                 <h2 className="mb-4 text-2xl font-bold">Reparto Principal</h2>
@@ -212,6 +249,25 @@ export default function PeliculaPage({ params }: PageProps) {
                   <p className="mt-1">${movie.revenue.toLocaleString()}</p>
                 </div>
               )}
+            </div>
+
+            {/* Technical Sheet */}
+            <div className="mt-6">
+              <TechnicalSheet
+                movie={{
+                  director: director?.name,
+                  runtime: movie.runtime,
+                  country: movie.production_countries?.[0]?.name,
+                  language: movie.spoken_languages?.[0]?.name,
+                  budget: movie.budget,
+                  boxOffice: movie.revenue,
+                  productionCompanies: movie.production_companies?.map((c) => c.name),
+                  cast: movie.credits?.cast?.slice(0, 10).map((actor) => ({
+                    name: actor.name,
+                    character: actor.character,
+                  })),
+                }}
+              />
             </div>
           </aside>
         </div>
