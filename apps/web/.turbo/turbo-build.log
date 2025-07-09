@@ -1,0 +1,35 @@
+
+> @filmverse/web@0.1.0 build /home/isamorren/projects/filmverse/filmverse/apps/web
+> contentlayer2 build && next build
+
+Generated 2 documents in .contentlayer
+   ▲ Next.js 15.3.4
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+> [PWA] Compile server
+> [PWA] Compile server
+> [PWA] Compile client (static)
+> [PWA] Auto register service worker with: /home/isamorren/projects/filmverse/filmverse/node_modules/.pnpm/next-pwa@5.6.0_@babel+core@7.27.7_@types+babel__core@7.20.5_esbuild@0.25.5_next@15.3.4__8d28ababe76c5fb2a5a30df1a6e94f54/node_modules/next-pwa/register.js
+> [PWA] Service worker: /home/isamorren/projects/filmverse/filmverse/apps/web/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+Generated 2 documents in .contentlayer
+[Error: Cannot apply unknown utility class `bg-background`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive]
+ ✓ Compiled successfully in 14.0s
+   Linting and checking validity of types ...
+ ⚠ No ESLint configuration detected. Run next lint to begin setup
+Failed to compile.
+
+./src/app/pelicula/[id]/page.tsx:9:33
+Type error: 'PlayCircle' is declared but its value is never read.
+
+[0m [90m  7 |[39m [36mimport[39m { motion } [36mfrom[39m [32m'framer-motion'[39m[0m
+[0m [90m  8 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m'next/image'[39m[0m
+[0m[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mStar[39m[33m,[39m [33mCalendar[39m[33m,[39m [33mClock[39m[33m,[39m [33mPlayCircle[39m } [36mfrom[39m [32m'lucide-react'[39m[0m
+[0m [90m    |[39m                                 [31m[1m^[22m[39m[0m
+[0m [90m 10 |[39m [36mimport[39m { [33mSkeleton[39m } [36mfrom[39m [32m'@ui/components/skeleton'[39m[0m
+[0m [90m 11 |[39m [36mimport[39m { [33mConceptualRating[39m } [36mfrom[39m [32m'@/components/editorial/conceptual-rating'[39m[0m
+[0m [90m 12 |[39m [36mimport[39m { [33mCriticsAggregator[39m } [36mfrom[39m [32m'@/components/editorial/critics-aggregator'[39m[0m
+Next.js build worker exited with code: 1 and signal: null
+ ELIFECYCLE  Command failed with exit code 1.
