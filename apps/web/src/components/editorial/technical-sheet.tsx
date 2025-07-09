@@ -2,19 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  ChevronDown,
-  Film,
-  Camera,
-  Music,
-  Palette,
-  Users,
-  Globe,
-  Calendar,
-  Clock,
-  DollarSign,
-  Award,
-} from 'lucide-react'
+import { ChevronDown, Film, Camera, Music, Palette, Users, DollarSign, Award } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface TechnicalSheetProps {

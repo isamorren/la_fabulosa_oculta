@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Quote, Bookmark, Share2, Clock } from 'lucide-react'
-import { cn } from '@/lib/utils'
 
 interface EditorialReviewProps {
   title: string
